@@ -8,8 +8,8 @@ public class FibonacciHeap
 
     private int size;
     private int trees;
-    private int links;
-    private int cuts;
+    private static int links;
+    private static int cuts;
     private int marked;
     private HeapNode first;
     private HeapNode min;
@@ -153,7 +153,7 @@ public class FibonacciHeap
     */
     public static int totalLinks()
     {    
-    	return this.links;
+    	return links;
     }
 
    /**
@@ -165,7 +165,7 @@ public class FibonacciHeap
     */
     public static int totalCuts()
     {    
-    	return this.cuts;
+    	return cuts;
     }
 
      /**
@@ -226,7 +226,7 @@ public class FibonacciHeap
         }
 
        public void setRank(int rank) {
-           return this.rank = rank;
+           this.rank = rank;
        }
 
        public HeapNode getChild() {
@@ -234,7 +234,7 @@ public class FibonacciHeap
        }
 
        public void setChild(HeapNode node) {
-           return this.child = node;
+           this.child = node;
        }
 
        public HeapNode getNext() {
@@ -242,7 +242,7 @@ public class FibonacciHeap
        }
 
        public void setNext(HeapNode node) {
-           return this.next = node;
+    	    this.next = node;
        }
 
        public HeapNode getPrev() {
@@ -250,7 +250,7 @@ public class FibonacciHeap
        }
 
        public void setPrev(HeapNode node) {
-           return this.prev = node;
+           this.prev = node;
        }
 
        public HeapNode getParent() {
@@ -258,7 +258,7 @@ public class FibonacciHeap
        }
 
        public void setParent(HeapNode node) {
-           return this.parent = node;
+           this.parent = node;
        }
     }
 }
