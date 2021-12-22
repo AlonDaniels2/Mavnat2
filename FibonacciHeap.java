@@ -38,7 +38,7 @@ public class FibonacciHeap
      * Complexity: O(1)
      */
 
-    public void setSize(int size) {
+    private void setSize(int size) {
         this.size = size;
     }
 
@@ -46,7 +46,7 @@ public class FibonacciHeap
         return this.trees;
     }
 
-    public void setTrees(int trees) {
+    private void setTrees(int trees) {
         this.trees = trees;
     }
 
@@ -54,7 +54,7 @@ public class FibonacciHeap
         return this.marked;
     }
 
-    public void setMarked(int marked) {
+    private void setMarked(int marked) {
         this.marked = marked;
     }
 
@@ -62,7 +62,7 @@ public class FibonacciHeap
         return this.first;
     }
 
-    public void setFirst(HeapNode node) {
+    private void setFirst(HeapNode node) {
         this.first = node;
     }
 
@@ -70,7 +70,7 @@ public class FibonacciHeap
         return this.min;
     }
 
-    public void setMin(HeapNode node) {
+    private void setMin(HeapNode node) {
         this.min = node;
     }
 
@@ -384,7 +384,7 @@ public class FibonacciHeap
         }
             // Add to trees
             HeapNode first = this.first;
-            this.first = x;
+            this.setFirst(x);
             x.setNext(first);
             x.setPrev(first.getPrev());
             first.getPrev().setNext(x);
