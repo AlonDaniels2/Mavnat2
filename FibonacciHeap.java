@@ -242,6 +242,20 @@ public class FibonacciHeap
      */
     public void meld (FibonacciHeap heap2)
     {
+        // If heap2 is empty, nothing to meld.
+        if(heap2.isEmpty()) {
+            return;
+        }
+
+        // If heap2 is not empty and this heap is empty, "copy" heap2 to this heap
+        if(this.isEmpty()){
+            this.setSize(heap2.size());
+            this.setTrees(heap2.getTrees());
+            this.setMarked(heap2.getMarked());
+            this.setFirst(heap2.getFirst());
+            this.setMin(heap2.getMin());
+        }
+
         HeapNode leftFirst = this.first;
         HeapNode leftLast = this.first.prev;
         HeapNode rightFirst = heap2.getFirst();
@@ -290,11 +304,25 @@ public class FibonacciHeap
         if(this.isEmpty()) {
             return new int[] {};
         }
-        int[] arr = new int[(int)(1.45 * Math.log(this.size())) + 1];
+
+        // Find the array's size.
+        HeapNode first = this.getFirst();
+        int maxRank = first.getRank();
+
+        HeapNode tmp = first.getNext();
+        while(tmp != first) {
+            if(tmp.getRank() > maxRank) {
+                maxRank = tmp.getRank();
+            }
+            tmp = tmp.getNext();
+        }
+
+        // Create the array, loop over the root level and count the ranks.
+        int[] arr = new int[maxRank + 1];
         HeapNode firstNode = this.getFirst();
         arr[firstNode.getRank()]++;
 
-        HeapNode tmp = firstNode.getNext();
+        tmp = firstNode.getNext();
         while(tmp != firstNode) {
             arr[tmp.getRank()]++;
             tmp = tmp.getNext();
