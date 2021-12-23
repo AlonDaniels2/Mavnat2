@@ -48,7 +48,7 @@ public class HeapPrinter {
         String title  = String.format(" Key: %d ", heapNode.getKey());
         List<String> content =  Arrays.asList(
                 String.format(" Rank: %d ", heapNode.getRank()),
-                String.format(" Marked: %b ", heapNode.getMarked()),
+                String.format(" Marked: %b ", heapNode.isMarked()),
                 String.format(" Parent: %s ", keyify.apply(heapNode::getParent)),
                 String.format(" Next: %s ", keyify.apply(heapNode::getNext)),
                 String.format(" Prev: %s ", keyify.apply(heapNode::getPrev)),
@@ -148,24 +148,53 @@ public class HeapPrinter {
         HeapPrinter.print(heap, false);
     }
 
-    public static void main(String[] args) {
-        /*FibonacciHeap tryr=new FibonacciHeap();
+    public static void testKmin(){
+        FibonacciHeap fibonacciHeap = new FibonacciHeap();
+        FibonacciHeap.HeapNode x=null;
+        FibonacciHeap.HeapNode[] nodes=new FibonacciHeap.HeapNode[(int)Math.pow(2, 6)];
+        for (int i = 0; i < Math.pow(2, 6); i++) {
+            nodes[i]=fibonacciHeap.insert(i);
+        }
+        System.out.println("c");
+        fibonacciHeap.deleteMin();
+        System.out.println("min= "+fibonacciHeap.getMin().getKey());
+        fibonacciHeap.deleteMin();
+        System.out.println("min= "+fibonacciHeap.getMin().getKey());
+        System.out.println("del key= "+nodes[35].getKey());
+        fibonacciHeap.delete(nodes[35]);
+        print(fibonacciHeap,false);
+        for(int i=2;i<32;i++){
+            if(i!=35)
+                fibonacciHeap.delete(nodes[i]);
+        }
+        print(fibonacciHeap,false);
+        int[] arr=FibonacciHeap.kMin(fibonacciHeap,25);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void manyTesters(){
+        FibonacciHeap tryr=new FibonacciHeap();
         tryr.insert(7);
         print(tryr,false);
         tryr.deleteMin();
-        print(tryr,false);*/
+        print(tryr,false);
         // demo();
+        FibonacciHeap.HeapNode[] arrN=new FibonacciHeap.HeapNode[100];
         FibonacciHeap heap=new FibonacciHeap();
         for(int i=1;i<=100;i++){
-            heap.insert(i);
+            arrN[i-1]=heap.insert(i);
         }
         heap.deleteMin();
         heap.deleteMin();
         print(heap,false);
-        //System.out.println(FibonacciHeap.totalLinks());
+        System.out.println(FibonacciHeap.totalLinks());
         for(int i=3;i<=36;i++){
-            heap.deleteMin();
+            //heap.deleteMin();
+            heap.delete(arrN[i-1]);
         }
+        print(heap,false);
+
+
         for(int i=1;i<= heap.size();i++){
             int[] arr=FibonacciHeap.kMin(heap,i);
             //System.out.println(Arrays.toString(arr));
@@ -178,5 +207,73 @@ public class HeapPrinter {
         System.out.println(Arrays.toString(arr));
         int result = (int)(Math.log(8) / Math.log(2));
         System.out.println(result);
+
+        FibonacciHeap fibHeap = new FibonacciHeap();
+        int size = (int) Math.pow(2, 4) + 1;
+        FibonacciHeap.HeapNode[] nodes = new FibonacciHeap.HeapNode[size];
+        for (int index = 0; index < size; index++) {
+            nodes[index] = fibHeap.insert(index);
+        }
+        System.out.println(fibHeap.getMin().getKey());
+        System.out.println(fibHeap.size());
+        fibHeap.deleteMin();
+        System.out.println(fibHeap.getFirst().getKey());
+        //System.out.println(Arrays.toString(nodes));
+        //System.out.println(fibHeap.getMin().getKey());
+        //System.out.println(fibHeap.size());
+        //if(fibHeap.potential() != 1) System.out.println("error in test 9");
+        print(fibHeap,false);
+        fibHeap.delete(nodes[10]);
+        print(fibHeap,false);
+        print(fibHeap,true);
+        //print(fibHeap,false);
+        //fibHeap.delete(nodes[14]);
+        //fibHeap.delete(nodes[15]);
+        //if(fibHeap.potential() != 2) System.out.println("error in test 9");
+    }
+
+    public static void checkDel(){
+        int size=((int)Math.pow(2,3)+1);
+        FibonacciHeap heap=new FibonacciHeap();
+        FibonacciHeap.HeapNode[] arrNodes=new FibonacciHeap.HeapNode[size];
+        for(int i=0;i<size;i++){
+            arrNodes[i]=heap.insert(i+1);
+        }
+        print(heap,false);
+        int[] countereps=heap.countersRep();
+        System.out.println("countereps= "+Arrays.toString(countereps));
+        heap.decreaseKey(arrNodes[5],6);
+        print(heap,false);
+        countereps=heap.countersRep();
+        System.out.println("countereps= "+Arrays.toString(countereps));
+        heap.deleteMin();
+        print(heap,false);
+        countereps=heap.countersRep();
+        System.out.println("countereps= "+Arrays.toString(countereps));
+        heap.deleteMin();
+        print(heap,false);
+        countereps=heap.countersRep();
+        System.out.println("countereps= "+Arrays.toString(countereps));
+        heap.decreaseKey(arrNodes[3],4);
+        print(heap,false);
+        countereps=heap.countersRep();
+        System.out.println("countereps= "+Arrays.toString(countereps));
+
+    }
+
+    public static void main(String[] args) {
+        //manyTesters();
+    }
+
+    public static void q2(int i){
+        int m=(int)Math.pow(3,i)-1;
+        FibonacciHeap heap=new FibonacciHeap();
+        FibonacciHeap.HeapNode[] nodes=new FibonacciHeap.HeapNode[m];
+        for(int k=0;k<=m;k++){
+            heap.insert(k);
+        }
+        for(int j=1;j<=(3*m/4);j++){
+
+        }
     }
 }
