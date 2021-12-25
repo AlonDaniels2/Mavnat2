@@ -254,6 +254,8 @@ public class FibonacciHeap
             this.setMarked(heap2.getMarked());
             this.setFirst(heap2.getFirst());
             this.setMin(heap2.getMin());
+
+            return;
         }
 
         HeapNode leftFirst = this.first;
