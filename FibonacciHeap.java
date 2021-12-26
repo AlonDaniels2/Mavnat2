@@ -81,7 +81,8 @@ public class FibonacciHeap
      *
      * Deletes the node containing the minimum key.
      *
-     * Complexity: O(log n)
+     * Complexity: O(n)
+     * amortized: O(log n)
      */
     public void deleteMin() {
         if (!this.isEmpty())
@@ -338,7 +339,8 @@ public class FibonacciHeap
      * Deletes the node x from the heap.
      * It is assumed that x indeed belongs to the heap.
      *
-     * Complexity:O(log n)
+     * Complexity: O(n)
+     * amortized: O(log n)
      */
     public void delete(HeapNode x)
     {
@@ -423,6 +425,8 @@ public class FibonacciHeap
      * The function should run in O(k*deg(H)). (deg(H) is the degree of the only tree in H.)
      *
      * ###CRITICAL### : you are NOT allowed to change H.
+     *
+     * Complexity:O(k* deg(H))
      */
     public static int[] kMin(FibonacciHeap H, int k)
     {
